@@ -21,16 +21,15 @@ const SHOW_EXAMPLES = false;
  */
 function createRecipe(name, cookingTime, servings = 4) {
   // CHALLENGE 1: Create a new recipe object
-  // The recipe object needs these properties:
-  // - id: use Date.now() to create a unique identifier
-  // - name: from the name parameter
-  // - cookingTime: from the cookingTime parameter
-  // - servings: from the servings parameter (which has a default value)
-  // - ingredients: an empty array to store ingredients later
-  // - steps: an empty array to store cooking steps
-  // - dateCreated: today's date (use new Date().toLocaleDateString())
-
-  // YOUR CODE HERE
+  return {
+    id: Date.now(),
+    name: name,
+    cookingTime: cookingTime,
+    servings: servings,
+    ingredients: [],
+    steps: [],
+    dateCreated: new Date().toLocaleDateString()
+  };
 }
 
 /**
@@ -49,11 +48,9 @@ function createRecipe(name, cookingTime, servings = 4) {
  */
 const addIngredient = function (recipe, name, amount, unit) {
   // CHALLENGE 2: Add an ingredient to a recipe
-  // Create an ingredient object with name, amount, and unit properties
-  // Add it to the recipe's ingredients array
-  // Return the modified recipe
-
-  // YOUR CODE HERE
+  const ingredient = { name: name, amount: amount, unit: unit };
+  recipe.ingredients.push(ingredient);
+  return recipe;
 };
 
 /**
@@ -68,10 +65,8 @@ const addIngredient = function (recipe, name, amount, unit) {
  */
 function addStep(recipe, instruction) {
   // CHALLENGE 3: Add a step to a recipe
-  // Add the instruction to the recipe's steps array
-  // Return the modified recipe
-
-  // YOUR CODE HERE
+  recipe.steps.push(instruction);
+  return recipe;
 }
 
 /**
@@ -86,11 +81,10 @@ function addStep(recipe, instruction) {
  */
 function removeStep(recipe, stepIndex) {
   // CHALLENGE 4: Remove a step from a recipe
-  // Check if the stepIndex is valid (not negative and within the steps array length)
-  // If valid, remove the step at that index using splice()
-  // Return the modified recipe
-
-  // YOUR CODE HERE
+  if (stepIndex >= 0 && stepIndex < recipe.steps.length) {
+    recipe.steps.splice(stepIndex, 1);
+  }
+  return recipe;
 }
 
 /* c8 ignore start */
